@@ -238,6 +238,8 @@ class SearchQuery(BaseSearchQuery):
                     # Convert whatever we find to what pysolr wants.
                     value = self.backend.conn._from_python(value)
                 
+                value = self.clean(value)
+                
                 # Check to see if it's a phrase for an exact match.
                 if ' ' in value:
                     value = '"%s"' % value
